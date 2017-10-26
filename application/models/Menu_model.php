@@ -34,6 +34,11 @@ class Menu_model extends CI_Model
     // get data surve
     function get_surve($data)
     {   
+        // echo count(array_filter($data));
+        
+        // var_dump(array_filter($data));
+        $jumlah_fileter = count(array_filter($data)) - 1;
+        //echo $jumlah_fileter;
         $this->db->select('menu.nama,menu.img,menu.harga, count(menu.id) as menu_id');
         $this->db->from('menu');
         $this->db->join('menu_parameter', 'menu.id = menu_parameter.id_menu');
@@ -43,7 +48,7 @@ class Menu_model extends CI_Model
             }
         } 
         $this->db->group_by('menu.id');
-        $this->db->having("menu_id >'".isset($data)."'");
+        $this->db->having("menu_id >'".$jumlah_fileter."'");
         return $this->db->get()->result();
         foreach($data as $key => $value){
             if(isset($value)){
@@ -56,9 +61,12 @@ class Menu_model extends CI_Model
 
 
     function get_kategori($kategori)
-    {
+    {   $this->db->select('*');
+        $this->db->from('menu');
+        $this->db->join('stok', 'menu.id = stok.id_menu');
         $this->db->where('id_jenis', $kategori);
-        return $this->db->get($this->table)->result();
+        $this->db->where('stok > ', '0');
+        return $this->db->get()->result();
     }
 
     // get data by id
