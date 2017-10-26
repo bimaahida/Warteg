@@ -17,10 +17,11 @@ class Detail_pesanan_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id,id_pesanan,id_menu,jumlah,total');
+        $this->datatables->select('detail_pesanan.id,id_pesanan,nama,jumlah,total');
         $this->datatables->from('detail_pesanan');
         //add this line for join
-        //$this->datatables->join('table2', 'detail_pesanan.field = table2.field');
+        //$this->datatables->join('pesanan', 'detail_pesanan.id_pesanan = pesanan.id');
+        $this->datatables->join('menu', 'detail_pesanan.id_menu = menu.id');
         $this->datatables->add_column('action', anchor(site_url('detail_pesanan/read/$1'),'Read')." | ".anchor(site_url('detail_pesanan/update/$1'),'Update')." | ".anchor(site_url('detail_pesanan/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
         return $this->datatables->generate();
     }

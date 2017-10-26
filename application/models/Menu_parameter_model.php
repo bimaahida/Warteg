@@ -17,10 +17,12 @@ class Menu_parameter_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id,id_menu,id_parameter,keterangan');
+        $this->datatables->select('menu_parameter.id,menu.nama,jenis_parameter.parameter as jenis,keterangan');
         $this->datatables->from('menu_parameter');
         //add this line for join
-        //$this->datatables->join('table2', 'menu_parameter.field = table2.field');
+        $this->datatables->join('menu', 'menu_parameter.id_menu = menu.id');
+        $this->datatables->join('parameter', 'menu_parameter.id_parameter = parameter.id');
+        $this->datatables->join('jenis_parameter', 'parameter.id_jenis  = jenis_parameter.id');
         $this->datatables->add_column('action', anchor(site_url('menu_parameter/read/$1'),'Read')." | ".anchor(site_url('menu_parameter/update/$1'),'Update')." | ".anchor(site_url('menu_parameter/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
         return $this->datatables->generate();
     }

@@ -18,10 +18,10 @@ class Parameter_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('id,id_jenis,parameter');
+        $this->datatables->select('parameter.id,jenis_parameter.parameter as jenis,parameter.parameter');
         $this->datatables->from('parameter');
         //add this line for join
-        //$this->datatables->join('table2', 'parameter.field = table2.field');
+        $this->datatables->join('jenis_parameter', 'parameter.id_jenis = jenis_parameter.id');
         $this->datatables->add_column('action', anchor(site_url('parameter/read/$1'),'Read')." | ".anchor(site_url('parameter/update/$1'),'Update')." | ".anchor(site_url('parameter/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
         return $this->datatables->generate();
     }

@@ -18,7 +18,6 @@
             <th width="80px">No</th>
     <th>Nama</th>
     <th>Username</th>
-    <th>Password</th>
     <th>Status</th>
     <th width="200px">Action</th>
         </tr>
@@ -61,7 +60,7 @@
                 {
                     "data": "id",
                     "orderable": false
-                },{"data": "nama"},{"data": "username"},{"data": "password"},{"data": "status"},
+                },{"data": "nama"},{"data": "username"},{"data": "status"},
                 {
                     "data" : "action",
                     "orderable": false,

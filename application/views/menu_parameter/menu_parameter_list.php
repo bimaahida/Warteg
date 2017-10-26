@@ -63,7 +63,7 @@
                         {
                             "data": "id",
                             "orderable": false
-                        },{"data": "id_menu"},{"data": "id_parameter"},{"data": "keterangan"},
+                        },{"data": "nama"},{"data": "jenis"},{"data": "keterangan"},
                         {
                             "data" : "action",
                             "orderable": false,

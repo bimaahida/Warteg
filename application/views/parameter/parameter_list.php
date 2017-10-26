@@ -58,7 +58,7 @@
                 {
                     "data": "id",
                     "orderable": false
-                },{"data": "id_jenis"},{"data": "parameter"},
+                },{"data": "jenis"},{"data": "parameter"},
                 {
                     "data" : "action",
                     "orderable": false,

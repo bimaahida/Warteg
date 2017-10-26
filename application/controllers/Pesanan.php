@@ -15,7 +15,8 @@ class Pesanan extends CI_Controller
 
     public function index()
     {
-        $this->load->view('pesanan/pesanan_list');
+        $this->render['content']   = $this->load->view('pesanan/pesanan_list', array(), TRUE);
+        $this->load->view('template', $this->render);
     } 
     
     public function json() {
@@ -31,8 +32,9 @@ class Pesanan extends CI_Controller
 		'id' => $row->id,
 		'waktu' => $row->waktu,
 		'harga' => $row->harga,
-	    );
-            $this->load->view('pesanan/pesanan_read', $data);
+        );
+            $this->render['content']   = $this->load->view('pesanan/pesanan_read', $data, TRUE);
+            $this->load->view('template', $this->render);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('pesanan'));
@@ -47,8 +49,9 @@ class Pesanan extends CI_Controller
 	    'id' => set_value('id'),
 	    'waktu' => set_value('waktu'),
 	    'harga' => set_value('harga'),
-	);
-        $this->load->view('pesanan/pesanan_form', $data);
+    );
+        $this->render['content']   = $this->load->view('pesanan/pesanan_form', $data, TRUE);
+        $this->load->view('template', $this->render);
     }
     
     public function create_action() 
@@ -81,7 +84,8 @@ class Pesanan extends CI_Controller
 		'waktu' => set_value('waktu', $row->waktu),
 		'harga' => set_value('harga', $row->harga),
 	    );
-            $this->load->view('pesanan/pesanan_form', $data);
+        $this->render['content']   = $this->load->view('pesanan/pesanan_form', $data, TRUE);
+        $this->load->view('template', $this->render);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('pesanan'));

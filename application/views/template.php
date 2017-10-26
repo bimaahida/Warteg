@@ -98,28 +98,31 @@
                         <a href="index.html" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="<?= base_url() ?>index.php/menu" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Menu Makanan</a>
+                        <a href="<?= base_url() ?>index.php/menu" class="waves-effect"><i class="fa fa-coffee fa-fw" aria-hidden="true"></i>Menu Makanan</a>
                     </li>
                     <li>
-                        <a href="<?= base_url() ?>index.php/stok" class="waves-effect"><i class="fa fa-table fa-fw" aria-hidden="true"></i>Stok Menu</a>
+                        <a href="<?= base_url() ?>index.php/stok" class="waves-effect"><i class="fa fa-calculator fa-fw" aria-hidden="true"></i>Stok Menu</a>
                     </li>
                     <li>
-                        <a href="<?= base_url() ?>index.php/jenis_menu" class="waves-effect"><i class="fa fa-font fa-fw" aria-hidden="true"></i>Jenis Menu</a>
+                        <a href="<?= base_url() ?>index.php/jenis_menu" class="waves-effect"><i class="fa fa-database fa-fw" aria-hidden="true"></i>Jenis Menu</a>
                     </li>
                     <li>
-                        <a href="<?= base_url() ?>index.php/jenis_parameter" class="waves-effect"><i class="fa fa-globe fa-fw" aria-hidden="true"></i>Jenis Parameter</a>
+                        <a href="<?= base_url() ?>index.php/jenis_parameter" class="waves-effect"><i class="fa fa-archive fa-fw" aria-hidden="true"></i>Jenis Parameter</a>
                     </li>
                     <li>
-                        <a href="<?= base_url() ?>index.php/parameter" class="waves-effect"><i class="fa fa-columns fa-fw" aria-hidden="true"></i>Parameter</a>
+                        <a href="<?= base_url() ?>index.php/parameter" class="waves-effect"><i class="fa fa-asterisk fa-fw" aria-hidden="true"></i>Parameter</a>
                     </li>
                     <li>
-                        <a href="<?= base_url() ?>index.php/menu_parameter" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>Menu Parameter</a>
+                        <a href="<?= base_url() ?>index.php/menu_parameter" class="waves-effect"><i class="fa fa-check-square-o fa-fw" aria-hidden="true"></i>Menu Parameter</a>
                     </li>
                     <li>
-                        <a href="<?= base_url() ?>index.php/aturan" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>Aturan</a>
+                        <a href="<?= base_url() ?>index.php/pesanan" class="waves-effect"><i class="fa fa-cart-arrow-down fa-fw" aria-hidden="true"></i>Pesanan</a>
                     </li>
                     <li>
-                        <a href="<?= base_url() ?>index.php/user" class="waves-effect"><i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>User</a>
+                        <a href="<?= base_url() ?>index.php/detail_pesanan" class="waves-effect"><i class="fa fa-cart-plus fa-fw" aria-hidden="true"></i>Detail Pesanan</a>
+                    </li>
+                    <li>
+                        <a href="<?= base_url() ?>index.php/user" class="waves-effect"><i class="fa fa-user  fa-fw" aria-hidden="true"></i>User</a>
                     </li>
                 </ul>
             </div>
@@ -152,7 +155,7 @@
                 </div>
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
+            <footer class="footer text-center"> 2017 &copy; Ample Admin  </footer>
         </div>
         <!-- ============================================================== -->
         <!-- End Page Content -->

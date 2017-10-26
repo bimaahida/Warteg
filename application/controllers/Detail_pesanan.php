@@ -15,7 +15,8 @@ class Detail_pesanan extends CI_Controller
 
     public function index()
     {
-        $this->load->view('detail_pesanan/detail_pesanan_list');
+        $this->render['content']   = $this->load->view('detail_pesanan/detail_pesanan_list', array(), TRUE);
+        $this->load->view('template', $this->render);
     } 
     
     public function json() {
@@ -33,8 +34,9 @@ class Detail_pesanan extends CI_Controller
 		'id_menu' => $row->id_menu,
 		'jumlah' => $row->jumlah,
 		'total' => $row->total,
-	    );
-            $this->load->view('detail_pesanan/detail_pesanan_read', $data);
+        );
+            $this->render['content']   = $this->load->view('detail_pesanan/detail_pesanan_read', $data, TRUE);
+            $this->load->view('template', $this->render);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('detail_pesanan'));
@@ -52,7 +54,8 @@ class Detail_pesanan extends CI_Controller
 	    'jumlah' => set_value('jumlah'),
 	    'total' => set_value('total'),
 	);
-        $this->load->view('detail_pesanan/detail_pesanan_form', $data);
+        $this->render['content']   = $this->load->view('detail_pesanan/detail_pesanan_form', $data, TRUE);
+        $this->load->view('template', $this->render);
     }
     
     public function create_action() 
@@ -89,7 +92,8 @@ class Detail_pesanan extends CI_Controller
 		'jumlah' => set_value('jumlah', $row->jumlah),
 		'total' => set_value('total', $row->total),
 	    );
-            $this->load->view('detail_pesanan/detail_pesanan_form', $data);
+            $this->render['content']   = $this->load->view('detail_pesanan/detail_pesanan_form', $data, TRUE);
+            $this->load->view('template', $this->render);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('detail_pesanan'));
