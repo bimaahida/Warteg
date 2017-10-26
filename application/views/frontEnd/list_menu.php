@@ -19,10 +19,7 @@ foreach ($data as $key) { ?>
                     <h6><a href="single.html"><?= $key->nama?></a></h6>							
                 </div>
                 <div class="mid-2">
-                    <p ><em class="item_price"><?= $key->harga?></em></p>
-                    <div class="block">
-                        <div class="starbox small ghosting"> </div>
-                    </div>
+                    <p ><em class="item_price">Rp.<?= $key->harga?>,00</em></p>
                     <div class="clearfix"></div>
                 </div>
                 <div class="add">

@@ -196,31 +196,39 @@ function hideURLbar(){ window.scrollTo(0,1); } </script>
         var checkoutString = "Total Price: " + totalPrice + "\nTotal Quantity: " + totalQuantity;
 				checkoutString += "\n\n id \t name \t summary \t price \t quantity \t image path";
 				var data_array = {};
-        $.each(products, function(){
+				var n = 0;
+				$.each(products, function(){
 					checkoutString += ("\n " + this.id + " \t " + this.name + " \t " + this.summary + " \t " + this.price + " \t " + this.quantity + " \t " + this.image);
+						var id = this.id;
+						var name = this.name;
+						var price = this.price;
+						var quantity = this.quantity;
+						data_array[n] = {'id' : id,'name' : name,'price' : price,'quantity':quantity,};
+						n++;
+					});
+					
+					var data_json = JSON.stringify(data_array);
+					console.log(data_json);
 					$.ajax({
 						url:"<?php echo base_url(); ?>menu/Cekout",
 						type : "POST",
 						//contentType: "application/json",
 						//dataType: "json",
 						data:{
-							'products':products, 
+							'data' : data_json,
 							'totalPrice':totalPrice, 
 							'totalQuantity':totalQuantity,
 						},
 						success:function(data)
 						{
-							console.log(data);
+							//console.log(data);
 							//document.location.href = "<?php echo base_url(); ?>menu/Cekout";
 						},
 						error: function(data) {
-								//console.error("error:",errMsg);
-								//alert(data);
-								console.log(data);
+								//console.error("error:",data);
 						}
 					});
-        });
-				alert(checkoutString)
+				//alert(checkoutString)
 				
 				console.log("checking out", products, totalPrice, totalQuantity);
       },

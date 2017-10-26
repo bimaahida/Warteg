@@ -41,13 +41,48 @@ class Menu extends CI_Controller
     }
 
     public function Cekout(){
-        $products = $this->input->post('products');
+        $this->load->model('Stok_model');
+        $this->load->model('Pesanan_model');
+        $this->load->model('Detail_pesanan_model');
+
+        $data = $this->input->post('data');
+        $data_json = json_decode($data);
         $totalPrice = $this->input->post('totalPrice');
         $totalQuantity = $this->input->post('totalQuantity');
+        $data_pesan = array(
+            'harga' => $totalPrice,
+        );
+        $inset_id = $this->Pesanan_model->insert($data_pesan);
+        var_dump($inset_id);
+        foreach ($data_json as $key => $value) {
+            $id = $value->id;
+            $price = $value->price;
+            $quantity = $value->quantity;
 
-        var_dump($products);
-        var_dump($totalPrice);
-        var_dump($totalQuantity);
+            $data_detail = array(
+                'id_pesanan' => $inset_id,
+                'id_menu' => $id,
+                'jumlah' => $quantity,
+                'total' => $price,
+            );
+            $this->Detail_pesanan_model->insert($data_detail);
+            $row = $this->Stok_model->get_by_id_menu($id);
+            if ($row) {
+                $stok = $row->stok;
+                $stok = $stok - $quantity;
+                $data = array(
+                    'stok' => $stok,
+                );
+                $this->Stok_model->update_by_menu($id,$data);
+            }    
+        }
+
+        
+        
+        
+
+         
+        
 
         
     }

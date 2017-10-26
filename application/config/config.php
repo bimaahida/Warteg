@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://localhost/SystemPakar_warteg/';
+$config['base_url'] = 'http://localhost/Warteg_online/';
 
 /*
 |--------------------------------------------------------------------------
@@ -82,7 +82,7 @@ $config['language']	= 'english';
 |--------------------------------------------------------------------------
 | Default Character Set
 |--------------------------------------------------------------------------
-|
+|   
 | This determines which character set is used by default in various methods
 | that require a character set to be provided.
 |
