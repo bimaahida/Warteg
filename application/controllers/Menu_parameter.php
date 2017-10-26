@@ -1,0 +1,148 @@
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
+
+class Menu_parameter extends CI_Controller
+{
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Menu_parameter_model');
+        $this->load->library('form_validation');        
+	    $this->load->library('datatables');
+    }
+
+    public function index()
+    {
+        $this->render['content']   = $this->load->view('menu_parameter/menu_parameter_list', array(), TRUE);
+        $this->load->view('template', $this->render);
+    } 
+    
+    public function json() {
+        header('Content-Type: application/json');
+        echo $this->Menu_parameter_model->json();
+    }
+
+    public function read($id) 
+    {
+        $row = $this->Menu_parameter_model->get_by_id($id);
+        if ($row) {
+            $data = array(
+		'id' => $row->id,
+		'id_menu' => $row->id_menu,
+		'id_parameter' => $row->id_parameter,
+		'keterangan' => $row->keterangan,
+	    );
+            $this->render['content']   = $this->load->view('menu_parameter/menu_parameter_read', $data, TRUE);
+            $this->load->view('template', $this->render);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('menu_parameter'));
+        }
+    }
+
+    public function create() 
+    {
+        $data = array(
+            'button' => 'Create',
+            'action' => site_url('menu_parameter/create_action'),
+	    'id' => set_value('id'),
+	    'id_menu' => set_value('id_menu'),
+	    'id_parameter' => set_value('id_parameter'),
+	    'keterangan' => set_value('keterangan'),
+	);
+        $this->render['content']   = $this->load->view('menu_parameter/menu_parameter_form', $data, TRUE);
+        $this->load->view('template', $this->render);
+    }
+    
+    public function create_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->create();
+        } else {
+            $data = array(
+            'id_menu' => $this->input->post('id_menu',TRUE),
+            'id_parameter' => $this->input->post('id_parameter',TRUE),
+            'keterangan' => $this->input->post('keterangan',TRUE),
+	        );
+
+            $this->Menu_parameter_model->insert($data);
+            $this->session->set_flashdata('message', 'Create Record Success');
+            redirect(site_url('menu_parameter'));
+        }
+    }
+    
+    public function update($id) 
+    {
+        $row = $this->Menu_parameter_model->get_by_id($id);
+
+        if ($row) {
+            $data = array(
+                'button' => 'Update',
+                'action' => site_url('menu_parameter/update_action'),
+                'id' => set_value('id', $row->id),
+                'id_menu' => set_value('id_menu', $row->id_menu),
+                'id_parameter' => set_value('id_parameter', $row->id_parameter),
+                'keterangan' => set_value('keterangan', $row->keterangan),
+	        );
+            $this->render['content']   = $this->load->view('menu_parameter/menu_parameter_form', $data, TRUE);
+            $this->load->view('template', $this->render);
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('menu_parameter'));
+        }
+    }
+    
+    public function update_action() 
+    {
+        $this->_rules();
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->update($this->input->post('id', TRUE));
+        } else {
+            $data = array(
+		'id_menu' => $this->input->post('id_menu',TRUE),
+		'id_parameter' => $this->input->post('id_parameter',TRUE),
+		'keterangan' => $this->input->post('keterangan',TRUE),
+	    );
+
+            $this->Menu_parameter_model->update($this->input->post('id', TRUE), $data);
+            $this->session->set_flashdata('message', 'Update Record Success');
+            redirect(site_url('menu_parameter'));
+        }
+    }
+    
+    public function delete($id) 
+    {
+        $row = $this->Menu_parameter_model->get_by_id($id);
+
+        if ($row) {
+            $this->Menu_parameter_model->delete($id);
+            $this->session->set_flashdata('message', 'Delete Record Success');
+            redirect(site_url('menu_parameter'));
+        } else {
+            $this->session->set_flashdata('message', 'Record Not Found');
+            redirect(site_url('menu_parameter'));
+        }
+    }
+
+    public function _rules() 
+    {
+	$this->form_validation->set_rules('id_menu', 'id menu', 'trim|required');
+	$this->form_validation->set_rules('id_parameter', 'id parameter', 'trim|required');
+	$this->form_validation->set_rules('keterangan', 'keterangan', 'trim|required');
+
+	$this->form_validation->set_rules('id', 'id', 'trim');
+	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+    }
+
+}
+
+/* End of file Menu_parameter.php */
+/* Location: ./application/controllers/Menu_parameter.php */
+/* Please DO NOT modify this information : */
+/* Generated by Harviacode Codeigniter CRUD Generator 2017-10-13 15:56:08 */
+/* http://harviacode.com */
