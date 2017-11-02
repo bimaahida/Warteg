@@ -38,7 +38,6 @@
                 </div>
             </div>
             <div class="col-md-4 text-right">
-                <?php echo anchor(site_url('pesanan/create'), 'Create', 'class="btn btn-primary"'); ?>
 		<?php echo anchor(site_url('pesanan/excel'), 'Excel', 'class="btn btn-primary"'); ?>
 	    </div>
         </div>

@@ -6,15 +6,15 @@
         </div>
 	    <div class="form-group">
             <label for="int">Id Menu <?php echo form_error('id_menu') ?></label>
-            <input type="text" class="form-control" name="id_menu" id="id_menu" placeholder="Id Menu" value="<?php echo $id_menu; ?>" />
+            <select name="id_menu" id="id_menu" class="form-control" placeholder="Id Jenis" >
+                <?php foreach ($data_menu as $key) { ?>
+                    <option value="<?= $key->id?>" <?php if($key->id == $id) echo "selected"; ?>><?= $key->nama ;?></option>
+                <?php } ?>
+            </select>
         </div>
 	    <div class="form-group">
             <label for="int">Jumlah <?php echo form_error('jumlah') ?></label>
-            <input type="text" class="form-control" name="jumlah" id="jumlah" placeholder="Jumlah" value="<?php echo $jumlah; ?>" />
-        </div>
-	    <div class="form-group">
-            <label for="varchar">Total <?php echo form_error('total') ?></label>
-            <input type="text" class="form-control" name="total" id="total" placeholder="Total" value="<?php echo $total; ?>" />
+            <input type="number" class="form-control" name="jumlah" id="jumlah" placeholder="Jumlah" value="<?php echo $jumlah; ?>" min="1"/>
         </div>
 	    <input type="hidden" name="id" value="<?php echo $id; ?>" /> 
 	    <button type="submit" class="btn btn-primary"><?php echo $button ?></button> 

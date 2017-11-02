@@ -1,3 +1,4 @@
+
 <?php
 
 if (!defined('BASEPATH'))
@@ -21,7 +22,7 @@ class Jenis_menu_model extends CI_Model
         $this->datatables->from('jenis_menu');
         //add this line for join
         //$this->datatables->join('table2', 'jenis_menu.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('jenis_menu/read/$1'),'Read')." | ".anchor(site_url('jenis_menu/update/$1'),'Update')." | ".anchor(site_url('jenis_menu/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
+        $this->datatables->add_column('action', anchor(site_url('jenis_menu/update/$1'),'Update')." | ".anchor(site_url('jenis_menu/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
         return $this->datatables->generate();
     }
 

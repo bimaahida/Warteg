@@ -76,24 +76,20 @@ class Menu extends CI_Controller
                 $this->Stok_model->update_by_menu($id,$data);
             }    
         }
-
-        
-        
-        
-
-         
-        
-
-        
+        // $data_print = array(
+        //     'pesanan' = $this->Pesanan_model->get_by_id($inset_id),
+        //     'detail_pesanan' =  $this->Detail_pesanan_model->get_by_id_pesanan($inset_id),
+        // );
     }
 
     public function read($id) 
     {
         $row = $this->Menu_model->get_by_id($id);
+        //var_dump($row);
         if ($row) {
             $data = array(
 		'id' => $row->id,
-		'id_jenis' => $row->id_jenis,
+		'jenis' => $row->jenis,
 		'nama' => $row->nama,
 		'img' => $row->img,
 		'harga' => $row->harga,
@@ -108,15 +104,20 @@ class Menu extends CI_Controller
 
     public function create() 
     {
+        $this->load->model('Jenis_menu_model');
+
+        $data_jenis = $this->Jenis_menu_model->get_all();
+
         $data = array(
             'button' => 'Create',
             'action' => site_url('menu/create_action'),
-	    'id' => set_value('id'),
-	    'id_jenis' => set_value('id_jenis'),
-	    'nama' => set_value('nama'),
-	    'img' => set_value('img'),
-	    'harga' => set_value('harga'),
-	);
+            'id' => set_value('id'),
+            'id_jenis' => set_value('id_jenis'),
+            'nama' => set_value('nama'),
+            'img' => set_value('img'),
+            'harga' => set_value('harga'),
+            'data_jenis' => $data_jenis,
+        );
         $this->render['content']   = $this->load->view('menu/menu_form', $data, TRUE);
         $this->load->view('template', $this->render);
     }
@@ -142,20 +143,24 @@ class Menu extends CI_Controller
     }
     
     public function update($id) 
-    {
+    {   $this->load->model('Jenis_menu_model');
+        
+        $data_jenis = $this->Jenis_menu_model->get_all();
+
         $row = $this->Menu_model->get_by_id($id);
 
         if ($row) {
             $data = array(
                 'button' => 'Update',
                 'action' => site_url('menu/update_action'),
-		'id' => set_value('id', $row->id),
-		'id_jenis' => set_value('id_jenis', $row->id_jenis),
-		'nama' => set_value('nama', $row->nama),
-		'img' => set_value('img', $row->img),
-		'harga' => set_value('harga', $row->harga),
-	    );
-            $this->render['content']   = $this->load->view('parameter/menu_form', $data, TRUE);
+                'id' => set_value('id', $row->id),
+                'id_jenis' => set_value('id_jenis', $row->id_jenis),
+                'nama' => set_value('nama', $row->nama),
+                'img' => set_value('img', $row->img),
+                'harga' => set_value('harga', $row->harga),
+                'data_jenis' => $data_jenis,
+            );
+            $this->render['content']   = $this->load->view('menu/menu_form', $data, TRUE);
             $this->load->view('template', $this->render);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');

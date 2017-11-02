@@ -17,7 +17,7 @@ class Menu_model extends CI_Model
 
     // datatables
     function json() {
-        $this->datatables->select('jenis_menu.id,jenis,nama,img,harga');
+        $this->datatables->select('menu.id,jenis,nama,img,harga');
         $this->datatables->from('menu');
         //add this line for join
         $this->datatables->join('jenis_menu', 'menu.id_jenis = jenis_menu.id');
@@ -71,9 +71,12 @@ class Menu_model extends CI_Model
 
     // get data by id
     function get_by_id($id)
-    {
-        $this->db->where($this->id, $id);
-        return $this->db->get($this->table)->row();
+    {   $this->db->select('menu.id,nama,harga,id_jenis,img,jenis');
+        $this->db->from('menu');
+        //add this line for join
+        $this->db->join('jenis_menu', 'menu.id_jenis = jenis_menu.id');
+        $this->db->where('menu.id', $id);
+        return $this->db->get()->result();
     }
     
     // get total rows

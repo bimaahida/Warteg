@@ -18,7 +18,6 @@
                     <th width="80px">No</th>
                     <th>Jenis</th>
                     <th>Nama</th>
-                    <th>Img</th>
                     <th>Harga</th>
                     <th width="200px">Action</th>
                 </tr>
@@ -64,7 +63,7 @@
                         {
                             "data": "id",
                             "orderable": false
-                        },{"data": "jenis"},{"data": "nama"},{"data": "img"},{"data": "harga"},
+                        },{"data": "jenis"},{"data": "nama"},{"data": "harga"},
                         {
                             "data" : "action",
                             "orderable": false,

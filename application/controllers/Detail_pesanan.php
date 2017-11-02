@@ -45,15 +45,18 @@ class Detail_pesanan extends CI_Controller
 
     public function create() 
     {
+        $this->load->model('Menu_model');
+        $data_menu = $this->Menu_model->get_all();
         $data = array(
             'button' => 'Create',
             'action' => site_url('detail_pesanan/create_action'),
-	    'id' => set_value('id'),
-	    'id_pesanan' => set_value('id_pesanan'),
-	    'id_menu' => set_value('id_menu'),
-	    'jumlah' => set_value('jumlah'),
-	    'total' => set_value('total'),
-	);
+            'id' => set_value('id'),
+            'id_pesanan' => set_value('id_pesanan'),
+            'id_menu' => set_value('id_menu'),
+            'jumlah' => set_value('jumlah'),
+            'total' => set_value('total'),
+            'data_menu' => $data_menu,
+        );
         $this->render['content']   = $this->load->view('detail_pesanan/detail_pesanan_form', $data, TRUE);
         $this->load->view('template', $this->render);
     }
@@ -65,12 +68,22 @@ class Detail_pesanan extends CI_Controller
         if ($this->form_validation->run() == FALSE) {
             $this->create();
         } else {
+            $this->load->model('Menu_model');
+            $menu =$this->Menu_model->get_by_id($this->input->post('id_menu',TRUE));
+            $jumlah = $this->input->post('jumlah',TRUE);
+            $harga="";
+            foreach ($menu as $key) {
+                $harga = $key->harga;
+            }
+            //var_dump($menu);
+            $total = $harga * $jumlah;
             $data = array(
-		'id_pesanan' => $this->input->post('id_pesanan',TRUE),
-		'id_menu' => $this->input->post('id_menu',TRUE),
-		'jumlah' => $this->input->post('jumlah',TRUE),
-		'total' => $this->input->post('total',TRUE),
-	    );
+                'id_pesanan' => $this->input->post('id_pesanan',TRUE),
+                'id_menu' => $this->input->post('id_menu',TRUE),
+                'jumlah' => $jumlah,
+                'total' => $total,
+            );
+            //var_dump($data);
 
             $this->Detail_pesanan_model->insert($data);
             $this->session->set_flashdata('message', 'Create Record Success');
@@ -139,7 +152,6 @@ class Detail_pesanan extends CI_Controller
 	$this->form_validation->set_rules('id_pesanan', 'id pesanan', 'trim|required');
 	$this->form_validation->set_rules('id_menu', 'id menu', 'trim|required');
 	$this->form_validation->set_rules('jumlah', 'jumlah', 'trim|required');
-	$this->form_validation->set_rules('total', 'total', 'trim|required');
 
 	$this->form_validation->set_rules('id', 'id', 'trim');
 	$this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');

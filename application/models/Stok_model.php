@@ -21,7 +21,7 @@ class Stok_model extends CI_Model
         $this->datatables->from('stok');
         //add this line for join
         $this->datatables->join('menu', 'stok.id_menu = menu.id');
-        $this->datatables->add_column('action', anchor(site_url('stok/read/$1'),'Read')." | ".anchor(site_url('stok/update/$1'),'Update')." | ".anchor(site_url('stok/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
+        $this->datatables->add_column('action', anchor(site_url('stok/update/$1'),'Update')." | ".anchor(site_url('stok/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
         return $this->datatables->generate();
     }
 

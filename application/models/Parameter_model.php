@@ -22,7 +22,7 @@ class Parameter_model extends CI_Model
         $this->datatables->from('parameter');
         //add this line for join
         $this->datatables->join('jenis_parameter', 'parameter.id_jenis = jenis_parameter.id');
-        $this->datatables->add_column('action', anchor(site_url('parameter/read/$1'),'Read')." | ".anchor(site_url('parameter/update/$1'),'Update')." | ".anchor(site_url('parameter/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
+        $this->datatables->add_column('action', anchor(site_url('parameter/update/$1'),'Update')." | ".anchor(site_url('parameter/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
         return $this->datatables->generate();
     }
 

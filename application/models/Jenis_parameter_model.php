@@ -21,7 +21,7 @@ class Jenis_parameter_model extends CI_Model
         $this->datatables->from('jenis_parameter');
         //add this line for join
         //$this->datatables->join('table2', 'jenis_parameter.field = table2.field');
-        $this->datatables->add_column('action', anchor(site_url('jenis_parameter/read/$1'),'Read')." | ".anchor(site_url('jenis_parameter/update/$1'),'Update')." | ".anchor(site_url('jenis_parameter/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
+        $this->datatables->add_column('action',anchor(site_url('jenis_parameter/update/$1'),'Update')." | ".anchor(site_url('jenis_parameter/delete/$1'),'Delete','onclick="javasciprt: return confirm(\'Are You Sure ?\')"'), 'id');
         return $this->datatables->generate();
     }
 

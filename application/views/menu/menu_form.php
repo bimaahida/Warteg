@@ -3,7 +3,11 @@
         <form action="<?php echo $action; ?>" method="post">
 	    <div class="form-group">
             <label for="int">Id Jenis <?php echo form_error('id_jenis') ?></label>
-            <input type="text" class="form-control" name="id_jenis" id="id_jenis" placeholder="Id Jenis" value="<?php echo $id_jenis; ?>" />
+            <select name="id_jenis" id="id_jenis" class="form-control" placeholder="Id Jenis" >
+                <?php foreach ($data_jenis as $key) { ?>
+                    <option value="<?= $key->id?>" <?php if($key->id == $id) echo "selected"; ?>><?= $key->jenis;?></option>
+                <?php } ?>
+            </select>
         </div>
 	    <div class="form-group">
             <label for="varchar">Nama <?php echo form_error('nama') ?></label>
