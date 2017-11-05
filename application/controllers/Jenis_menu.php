@@ -10,7 +10,7 @@ class Jenis_menu extends CI_Controller
         parent::__construct();
         $this->load->model('Jenis_menu_model');
         $this->load->library('form_validation');        
-	$this->load->library('datatables');
+	    $this->load->library('datatables');
     }
 
     public function index()

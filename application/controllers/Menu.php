@@ -85,17 +85,21 @@ class Menu extends CI_Controller
     public function read($id) 
     {
         $row = $this->Menu_model->get_by_id($id);
-        //var_dump($row);
-        if ($row) {
+        var_dump($row);
+        if($row > 0){
+        foreach ($row as $key) {
             $data = array(
-		'id' => $row->id,
-		'jenis' => $row->jenis,
-		'nama' => $row->nama,
-		'img' => $row->img,
-		'harga' => $row->harga,
-	    );
-            $this->render['content']   = $this->load->view('menu/menu_read', $data, TRUE);
-            $this->load->view('template', $this->render);
+                'id' => $key->id,
+                'jenis' => $key->jenis,
+                'nama' => $key->nama,
+                'img' => $key->img,
+                'harga' => $key->harga,
+                );
+        }
+            
+        //var_dump($data);
+        $this->render['content']   = $this->load->view('menu/menu_read', $data, TRUE);
+        $this->load->view('template', $this->render);
         } else {
             $this->session->set_flashdata('message', 'Record Not Found');
             redirect(site_url('menu'));
